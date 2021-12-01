@@ -4,10 +4,22 @@
 import numpy as np
 import pandas as pd
 import tensorflow as tf
+# Check tensorflow version
+print('TensorFlow version: ', tf.__version__)
 
 # Part 1 - Data Preprocessing
 
 # Importing the dataset
+# Read file
+dataset = pd.read_csv('Churn_Modelling.csv')
+# Data from column index 3 to penultimate (excluding official result)
+x = dataset.iloc[:, 3:-1].values
+# Only data from last column (official result)
+y = dataset.iloc[:, -1].values
+# Check data to use as input
+print('Dataset used to calculate result: ', x)
+# Check data to use as official result
+print('Dataset with official result: ', y)
 
 
 # Encoding categorical data
