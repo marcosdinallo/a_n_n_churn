@@ -11,6 +11,8 @@ from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OneHotEncoder
 # library for split model between train and test
 from sklearn.model_selection import train_test_split
+# library for scaling
+from sklearn.preprocessing import StandardScaler
 
 
 
@@ -52,7 +54,11 @@ print("Split Y train result: ", y_train)
 print("Split Y test result: ", y_test)
 
 # Feature Scaling
-
+sc = StandardScaler()
+x_train = sc.fit_transform(x_train)
+x_test = sc.fit_transform(x_test)
+print('Scaling x train: ', x_train)
+print('Scaling x test: ', x_test)
 
 # Part 2 - Building the ANN
 
