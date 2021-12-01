@@ -9,6 +9,9 @@ from sklearn.preprocessing import LabelEncoder
 # library fot hot encoding
 from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OneHotEncoder
+# library for split model between train and test
+from sklearn.model_selection import train_test_split
+
 
 
 # Check tensorflow version
@@ -42,7 +45,11 @@ ct = ColumnTransformer(transformers=[('encoder', OneHotEncoder(), [1])], remaind
 x = np.array(ct.fit_transform(x))
 print('Hot encoded dataset: ', x)
 # Splitting the dataset into the Training set and Test set
-
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=0)
+print("Split X train result: ", x_train)
+print("Split X test result: ", x_test)
+print("Split Y train result: ", y_train)
+print("Split Y test result: ", y_test)
 
 # Feature Scaling
 
