@@ -4,6 +4,13 @@
 import numpy as np
 import pandas as pd
 import tensorflow as tf
+# library to encode
+from sklearn.preprocessing import LabelEncoder
+# library fot hot encoding
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import OneHotEncoder
+
+
 # Check tensorflow version
 print('TensorFlow version: ', tf.__version__)
 
@@ -23,11 +30,17 @@ print('Dataset with official result: ', y)
 
 
 # Encoding categorical data
+
 # Label Encoding the "Gender" column
-
+le = LabelEncoder()
+x[:, 2] = le.fit_transform(x[:, 2])
+print('Encoded dataset used to calculate result: ', x)
 # One Hot Encoding the "Geography" column
-
-
+# hot encoding obj, column 1 (Geography)
+ct = ColumnTransformer(transformers=[('encoder', OneHotEncoder(), [1])], remainder='passthrough')
+# this hot encoding set encoded geography column as the first column
+x = np.array(ct.fit_transform(x))
+print('Hot encoded dataset: ', x)
 # Splitting the dataset into the Training set and Test set
 
 
