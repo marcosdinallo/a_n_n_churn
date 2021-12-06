@@ -13,6 +13,7 @@ from sklearn.preprocessing import OneHotEncoder
 from sklearn.model_selection import train_test_split
 # library for scaling
 from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import confusion_matrix, accuracy_score
 
 
 
@@ -92,9 +93,9 @@ ann.fit(x_train, y_train, batch_size=32, epochs=100)
 """
 Homework:
 Use our ANN model to predict if the customer with the following informations will leave the bank: 
-Geography: France
+Geography: France ===== 1,0,0  ---- because HOT encoding
 Credit Score: 600
-Gender: Male
+Gender: Male ===== 1 because encoding
 Age: 40 years old
 Tenure: 3 years
 Balance: $ 60000
@@ -106,8 +107,7 @@ So, should we say goodbye to that customer?
 
 Solution:
 """
-
-
+print(ann.predict(sc.transform([[1, 0, 0, 600, 1, 40, 3, 60000, 2, 1, 1, 50000]])) > 0.5)
 """
 Therefore, our ANN model predicts that this customer stays in the bank!
 Important note 1: Notice that the values of the features were all input in a double pair of square brackets. That's because the "predict" method always expects a 2D array as the format of its inputs. And putting our values into a double pair of square brackets makes the input exactly a 2D array.
@@ -115,6 +115,10 @@ Important note 2: Notice also that the "France" country was not input as a strin
 """
 
 # Predicting the Test set results
-
-
+y_pred = ann.predict(x_test)
+y_pred = y_pred > 0.5
+print(np.concatenate((y_pred.reshape(len(y_pred), 1), y_test.reshape(len(y_test), 1)), 1))
 # Making the Confusion Matrix
+
+print('Confusion Matrix: ', confusion_matrix(y_test, y_pred))
+print('Accuracy Score: ', accuracy_score(y_test, y_pred))
