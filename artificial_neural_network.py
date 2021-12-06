@@ -108,7 +108,8 @@ So, should we say goodbye to that customer?
 Solution:
 """
 prediction_result = ann.predict(sc.transform([[1, 0, 0, 600, 1, 40, 3, 60000, 2, 1, 1, 50000]]))
-print('Should we say goodbye to that customer?: ', 'Yes' if prediction_result > 0.5 else 'No')
+print('Should we say goodbye to that customer?: ', 'Yes ' if prediction_result > 0.5 else 'No ', 'Calculated value, ',
+      prediction_result[0][0])
 """
 Therefore, our ANN model predicts that this customer stays in the bank!
 Important note 1: Notice that the values of the features were all input in a double pair of square brackets. That's because the "predict" method always expects a 2D array as the format of its inputs. And putting our values into a double pair of square brackets makes the input exactly a 2D array.
