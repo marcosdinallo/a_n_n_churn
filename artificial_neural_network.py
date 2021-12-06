@@ -79,9 +79,12 @@ ann.add(tf.keras.layers.Dense(units=output_neuron_unit_layers, activation=activa
 # Part 3 - Training the ANN
 
 # Compiling the ANN
-
+optimizer_function = 'adam'
+loss_function = 'binary_crossentropy'
+neuron_metrics = ['accuracy']
+ann.compile(optimizer=optimizer_function, loss=loss_function, metrics=neuron_metrics)
 # Training the ANN on the Training set
-
+ann.fit(x_train, y_train, batch_size=32, epochs=100)
 # Part 4 - Making the predictions and evaluating the model
 
 # Predicting the result of a single observation
