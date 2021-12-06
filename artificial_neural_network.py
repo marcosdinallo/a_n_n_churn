@@ -63,6 +63,7 @@ print('Scaling x test: ', x_test)
 # Part 2 - Building the ANN
 
 # Initializing the ANN
+ann = tf.keras.models.Sequential()
 
 # Adding the input layer and the first hidden layer
 
