@@ -66,11 +66,16 @@ print('Scaling x test: ', x_test)
 ann = tf.keras.models.Sequential()
 
 # Adding the input layer and the first hidden layer
+hidden_neuron_unit_layers = 6
+output_neuron_unit_layers = 1
+activation_function = 'relu'
+activation_function_probability = 'sigmoid'
 
+ann.add(tf.keras.layers.Dense(units=hidden_neuron_unit_layers, activation=activation_function))
 # Adding the second hidden layer
-
+ann.add(tf.keras.layers.Dense(units=hidden_neuron_unit_layers, activation=activation_function))
 # Adding the output layer
-
+ann.add(tf.keras.layers.Dense(units=output_neuron_unit_layers, activation=activation_function_probability))
 # Part 3 - Training the ANN
 
 # Compiling the ANN
